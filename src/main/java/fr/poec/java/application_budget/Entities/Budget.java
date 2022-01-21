@@ -25,7 +25,7 @@ public class Budget {
 	
 	//A priori pas besoin, à voir ^^
 //	private List<Participant> membersBudget;
-	
+	//coucou
 	
 	public int getId() {
 		return id;
