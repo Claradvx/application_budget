@@ -31,7 +31,6 @@ public class App implements CommandLineRunner{
 	@Autowired
 	ExpenseRepository expenseRepo;
 	
-
 	public static void main(String[] args) {
 		SpringApplication.run(App.class, args);
 	}
