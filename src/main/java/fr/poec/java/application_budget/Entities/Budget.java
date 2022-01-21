@@ -1,8 +1,5 @@
 package fr.poec.java.application_budget.Entities;
 
-import java.util.List;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -63,7 +60,7 @@ public class Budget {
 
 	@Override
 	public String toString() {
-		return "Budget [id=" + id + ", name=" + name + ", description=" + description + "]";
+		return "Budget n°" + id + " : name=" + name + ", description=" + description;
 	}
 	
 	
