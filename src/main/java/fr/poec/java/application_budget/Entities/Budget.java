@@ -1,9 +1,12 @@
 package fr.poec.java.application_budget.Entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Budget {
@@ -20,9 +23,9 @@ public class Budget {
 	
 	//Liste des participants au budget
 	
-	//A priori pas besoin, à voir ^^
-//	private List<Participant> membersBudget;
-	//coucou
+	//Test relation bi directionnelle
+	@OneToMany(mappedBy = "budget")
+	private List<Participant> membersBudget;
 	
 	public int getId() {
 		return id;
