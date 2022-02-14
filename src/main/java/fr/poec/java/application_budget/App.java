@@ -5,19 +5,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 import fr.poec.java.application_budget.Entities.Budget;
 import fr.poec.java.application_budget.Entities.Expense;
 import fr.poec.java.application_budget.Entities.Participant;
 import fr.poec.java.application_budget.Entities.User;
-import fr.poec.java.application_budget.Repositories.Interfaces.BudgetRepository;
-import fr.poec.java.application_budget.Repositories.Interfaces.ExpenseRepository;
-import fr.poec.java.application_budget.Repositories.Interfaces.ParticipantRepository;
-import fr.poec.java.application_budget.Repositories.Interfaces.UserRepository;
+import fr.poec.java.application_budget.Repositories.BudgetRepository;
+import fr.poec.java.application_budget.Repositories.ExpenseRepository;
+import fr.poec.java.application_budget.Repositories.ParticipantRepository;
+import fr.poec.java.application_budget.Repositories.UserRepository;
 
 @SpringBootApplication
 public class App implements CommandLineRunner{
@@ -33,6 +35,11 @@ public class App implements CommandLineRunner{
 	
 	@Autowired
 	ExpenseRepository expenseRepo;
+	
+	@Bean
+	ModelMapper modelMaper() {
+		return new ModelMapper();
+	}
 	
 	public static void main(String[] args) {
 		SpringApplication.run(App.class, args);

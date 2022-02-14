@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Budget {
 
@@ -25,6 +27,7 @@ public class Budget {
 	
 	//Test relation bi directionnelle
 	@OneToMany(mappedBy = "budget")
+	@JsonIgnore
 	private List<Participant> membersBudget;
 	
 	public int getId() {

@@ -12,6 +12,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Participant {
 
@@ -102,7 +104,7 @@ public class Participant {
 
 	@Override
 	public String toString() {
-		return "Participant [id=" + id + ", username=" + username + ", user=" + user + ", budget=" + budget + "]";
+		return "Participant [id=" + id + ", username=" + username + ", budget=" + budget + "]";
 	}
 	
 		

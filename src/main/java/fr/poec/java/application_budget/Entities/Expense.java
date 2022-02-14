@@ -12,6 +12,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Expense {
 
@@ -26,17 +28,20 @@ public class Expense {
 	//To do : Category
 	
 	@ManyToOne
+	@JsonIgnore
 	private Budget budget;
 	
 	private double montant;
 	
 	//Participant ayant payé. Peux ne pas être concerné par la dépense
 	@ManyToOne
+	@JsonIgnore
 	private Participant payeur;
 	
 	//Participants concernés par la dépense
 	@ManyToMany
 	@JoinTable(name = "participant_expense", joinColumns = @JoinColumn(name = "expense_id"), inverseJoinColumns = @JoinColumn(name = "participant_id"))
+	@JsonIgnore
 	private List<Participant> beneficiaires;
 
 	public int getId() {
@@ -112,8 +117,7 @@ public class Expense {
 
 	@Override
 	public String toString() {
-		return "Expense [id=" + id + ", name=" + name + ", description=" + description + ", budget=" + budget
-				+ ", montant=" + montant + ", payeur=" + payeur + "]";
+		return "Expense [id=" + id + ", name=" + name + ", description=" + description + ", montant=" + montant + "]";
 	}
 	
 		
