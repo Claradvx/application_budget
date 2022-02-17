@@ -18,4 +18,7 @@ public interface ParticipantRepository extends JpaRepository<Participant, Intege
     @Query(value = "SELECT p FROM Participant p WHERE p.user.id = :user")
     List<Participant> getAllParticipantsByIdUser(@Param("user") int userId);
 
+    // Ajout FBZ
+    @Query(value = "SELECT p FROM Participant p WHERE p.budget.id = :budget")
+    List<Participant> getAllParticipantsByIdBudget(@Param("budget") int budgetId);
 }

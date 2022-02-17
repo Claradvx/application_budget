@@ -1,5 +1,6 @@
 package fr.poec.java.application_budget.Entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -37,6 +38,14 @@ public class Budget {
 	public void setId(int id) {
 		this.id = id;
 	}
+// Ajout FBZ : getter et setter pour membersBudget + création de la liste dans les constructeurs
+	public List<Participant> getMembersBudget() {
+		return membersBudget;
+	}
+
+	public void setMembersBudget(List<Participant> membersBudget) {
+		this.membersBudget = membersBudget;
+	}
 
 	public String getName() {
 		return name;
@@ -58,10 +67,12 @@ public class Budget {
 		super();
 		this.name = name;
 		this.description = description;
+		membersBudget = new ArrayList<Participant>();
 	}
 
 	public Budget() {
 		super();
+		membersBudget = new ArrayList<Participant>();
 	}
 
 	@Override

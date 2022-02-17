@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.poec.java.application_budget.Entities.Budget;
+import fr.poec.java.application_budget.Entities.Participant;
 import fr.poec.java.application_budget.Repositories.BudgetRepository;
 import fr.poec.java.application_budget.Services.Interfaces.BudgetService;
 
@@ -27,5 +28,10 @@ public class BudgetServiceImpl implements BudgetService {
 	@Override
 	public List<Budget> getAllBudgetsByIdUser(int userId) {
 		return budgetRepo.getAllBudgetsByIdUser(userId);
+	}
+
+	@Override
+	public List<Participant> getMembersBudgetById(int budgetId) {
+		return budgetRepo.getMembersBudgetById(budgetId);
 	}
 }

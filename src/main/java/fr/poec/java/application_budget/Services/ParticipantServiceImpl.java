@@ -3,6 +3,8 @@ package fr.poec.java.application_budget.Services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import fr.poec.java.application_budget.Entities.Participant;
@@ -20,4 +22,11 @@ public class ParticipantServiceImpl implements ParticipantService {
 	public List<Participant> getAllParticipantsByIdUser(int userId) {
 		return participantRepo.getAllParticipantsByIdUser(userId);
 	}
+
+    // Ajout FBZ
+	@Override
+	public List<Participant> getAllParticipantsByIdBudget(int budgetId) {
+		return participantRepo.getAllParticipantsByIdBudget(budgetId);
+	}
+	
 }

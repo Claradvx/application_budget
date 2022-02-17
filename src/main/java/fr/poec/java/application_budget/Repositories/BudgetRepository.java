@@ -15,4 +15,9 @@ public interface BudgetRepository extends JpaRepository<Budget, Integer>{
 
     @Query(value = "SELECT b FROM Participant p JOIN p.budget b WHERE p.user.id = :user")
     List<Budget> getAllBudgetsByIdUser(@Param("user") int userId);
+    
+ // Ajout FBZ
+    @Query(value = "SELECT b.membersBudget FROM Budget b WHERE b.id = :budget")
+    List<Participant> getMembersBudgetById (@Param("budget")int budgetId);
+   
 }
