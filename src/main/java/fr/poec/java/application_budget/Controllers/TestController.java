@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,7 +44,6 @@ public class TestController {
 //        return msg;//"Hello World !";
 //    }
 	
-    
     @GetMapping(value="/budgets", produces = "application/json")
     public List<Budget> getAllBudget(){
         return budgetservice.getAllBudget();
@@ -55,16 +55,19 @@ public class TestController {
 //        return participantservice.getAllParticipantsByIdUser(id);
 //    }
     
+   
     @GetMapping(value="/user{id}", produces = "application/json")
     public List<Budget> getAllBudgetsByIdUser(@PathVariable int id){
         return budgetservice.getAllBudgetsByIdUser(id);
     }
     
+ 
     @GetMapping(value="/budget{id}/expenses", produces = "application/json")
     public List<Expense> getAllExpensesByIdBudget(@PathVariable int id){
         return expenseservice.getAllExpensesByIdBudget(id);
     }
     
+
     @GetMapping(value="/budget{id}/participants", produces = "application/json")
     public List<Participant> getMembersBudgetById(@PathVariable int id){
         return budgetservice.getMembersBudgetById(id);
@@ -76,7 +79,7 @@ public class TestController {
     	Map<Integer, Double> realCostMap = new HashMap<>();
     	double realCost;
     	Map<Integer, Double> paymentMap = new HashMap<>();
-    	double payment = 0;
+    	double payment;
     	List<Participant> participants = participantservice.getAllParticipantsByIdBudget(id);
     	for (Participant p : participants) {
     		realCost = 0;
@@ -89,12 +92,12 @@ public class TestController {
     	
     	
     	for (Participant p : participants) {
+    		payment = 0;
 			List<Expense> expensesP = expenseservice.getAllExpensesByPayeur(p.getId());
 			for (Expense e : expensesP) {
 				payment += e.getMontant();
 			}
 			paymentMap.put(p.getId(), payment);
-			payment = 0;
 		}
     	
     	for (Participant p : participants) {

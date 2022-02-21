@@ -11,6 +11,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import fr.poec.java.application_budget.Entities.Budget;
 import fr.poec.java.application_budget.Entities.Expense;
@@ -22,6 +24,7 @@ import fr.poec.java.application_budget.Repositories.ParticipantRepository;
 import fr.poec.java.application_budget.Repositories.UserRepository;
 
 @SpringBootApplication
+
 public class App implements CommandLineRunner{
 	
 	@Autowired
@@ -41,9 +44,23 @@ public class App implements CommandLineRunner{
 		return new ModelMapper();
 	}
 	
+//	@Bean
+//	public WebMvcConfigurer corsConfigurer() {
+//		return new WebMvcConfigurer() {
+//		@Override
+//		public void addCorsMappings (CorsRegistry registry) {
+//			registry.addMapping("/home/budgets")
+//				.allowedOrigins("http://localhost:3000");
+//		}
+//	};
+//	}
+	
 	public static void main(String[] args) {
 		SpringApplication.run(App.class, args);
 	}
+	
+
+	
 
 	@Override
 	public void run(String... args) throws Exception {
