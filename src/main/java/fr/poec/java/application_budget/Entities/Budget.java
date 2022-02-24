@@ -25,7 +25,6 @@ public class Budget {
 	//To do : ajouter Devise
 	
 	//Liste des participants au budget
-	
 	//Test relation bi directionnelle
 	@OneToMany(mappedBy = "budget")
 	@JsonIgnore
@@ -38,7 +37,7 @@ public class Budget {
 	public void setId(int id) {
 		this.id = id;
 	}
-// Ajout FBZ : getter et setter pour membersBudget + création de la liste dans les constructeurs
+
 	public List<Participant> getMembersBudget() {
 		return membersBudget;
 	}

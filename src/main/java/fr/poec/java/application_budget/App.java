@@ -259,6 +259,7 @@ public class App implements CommandLineRunner{
 	System.out.println(nom.get(p1.getId()));
 	
 	System.out.println("-----------------------Fin Test Calcul--------------------------- ");
+	
 	}
-
+	
 }

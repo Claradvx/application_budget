@@ -21,17 +21,28 @@ public class BudgetServiceImpl implements BudgetService {
 	}
 
 	@Override
-	public Budget getById(int id) {
-		return budgetRepo.getById(id);
+	public Budget getBudgetById(int id) {
+		return budgetRepo.getBudgetById(id);
 	}
 
 	@Override
-	public List<Budget> getAllBudgetsByIdUser(int userId) {
-		return budgetRepo.getAllBudgetsByIdUser(userId);
+	public List<Budget> getBudgetsByIdUser(int userId) {
+		return budgetRepo.getBudgetsByIdUser(userId);
 	}
 
 	@Override
-	public List<Participant> getMembersBudgetById(int budgetId) {
-		return budgetRepo.getMembersBudgetById(budgetId);
+	public List<Participant> getParticipantsByIdBudget(int budgetId) {
+		return budgetRepo.getParticipantsByIdBudget(budgetId);
+	}
+
+	@Override
+	public Budget saveOrUpdateBudget(Budget budget) {
+		Budget newbudget = budgetRepo.save(budget);
+		return newbudget;
+	}
+
+	@Override
+	public void deleteBudgetById(int id) {
+		budgetRepo.deleteById(id);
 	}
 }

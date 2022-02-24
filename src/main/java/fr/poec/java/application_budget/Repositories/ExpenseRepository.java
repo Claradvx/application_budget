@@ -13,14 +13,13 @@ import fr.poec.java.application_budget.Entities.Expense;
 @Repository
 public interface ExpenseRepository extends JpaRepository<Expense, Integer>{
 
-	//Ajout FBZ
+
     @Query(nativeQuery = true, value = "SELECT * FROM expense WHERE budget_id = :budget")
-    List<Expense> getAllExpensesByIdBudget(@Param("budget") int budgetId);
-    
-	//Ajout FBZ
+    List<Expense> getExpensesByIdBudget(@Param("budget") int budgetId);
+   
     @Query(value = "SELECT e FROM Expense e WHERE e.payeur.id = :payeur")
-    List<Expense> getAllExpensesByPayeur(@Param("payeur") int payeurId);
+    List<Expense> getExpensesByPayeur(@Param("payeur") int payeurId);
     
-//    @Query(nativeQuery = true, value = "SELECT * FROM expense WHERE budget_id = :payeur")
-//    List<Expense> getAllExpensesByPayeur(@Param("payeur") int payeurId);
+	public Expense getExpenseById(int id);
+   
 }

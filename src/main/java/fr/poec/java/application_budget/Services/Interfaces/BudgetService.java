@@ -11,12 +11,15 @@ public interface BudgetService {
 	
 	public List<Budget> getAllBudget();
 	
-	public Budget getById(int id);
+	public Budget getBudgetById(int id);
 	
-	public List<Budget> getAllBudgetsByIdUser(int userId);
+	public List<Budget> getBudgetsByIdUser(int userId);
+
+	public List <Participant> getParticipantsByIdBudget(int budgetId);
 	
-	//Ajout FBZ
-	List <Participant> getMembersBudgetById (int budgetId);
+	public Budget saveOrUpdateBudget(Budget budget);
+	
+	public void deleteBudgetById(int id);
 	
 
 }

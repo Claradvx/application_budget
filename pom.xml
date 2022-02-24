@@ -33,8 +33,8 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
-<!-- Ajout FBZ le 08/02/2022 -->
+
+		<!-- Ajout FBZ le 08/02/2022 -->
 		<dependency>
 			<groupId>org.modelmapper</groupId>
 			<artifactId>modelmapper</artifactId>
@@ -50,15 +50,14 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 		</dependency>
-<!-- Fin Ajout FBZ le 08/02/2022 -->
+
+		<!-- Fin Ajout FBZ le 08/02/2022 -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web-services</artifactId>
 		</dependency>
-		
 
-		
 	</dependencies>
 
 	<build>

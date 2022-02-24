@@ -4,13 +4,19 @@ import java.util.List;
 
 import org.springframework.data.repository.query.Param;
 
+import fr.poec.java.application_budget.Entities.Expense;
 import fr.poec.java.application_budget.Entities.Participant;
 
 public interface ParticipantService {
 	
-	public List<Participant> getAllParticipantsByIdUser(int userId);
+	public List<Participant> getParticipantsByIdUser(int userId);
 	
-    // Ajout FBZ
-    List <Participant> getAllParticipantsByIdBudget (int budgetId);
+    public List <Participant> getParticipantsByIdBudget (int budgetId);
 
+    public Participant getParticipantById(int id);
+    
+	public void deleteParticipantById(int id);
+	
+	public Participant saveOrUpdateParticipant(Participant participant);
+    
 }

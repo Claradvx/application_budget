@@ -16,15 +16,30 @@ public class ExpenseServiceImpl implements ExpenseService {
 	@Autowired
 	private ExpenseRepository expenseRepo;
 
-	//Ajout FBZ
+
 	@Override
-	public List<Expense> getAllExpensesByIdBudget(int budgetId) {
-		return expenseRepo.getAllExpensesByIdBudget(budgetId);
+	public List<Expense> getExpensesByIdBudget(int budgetId) {
+		return expenseRepo.getExpensesByIdBudget(budgetId);
+	}
+	
+	@Override
+	public List<Expense> getExpensesByPayeur(int payeurId) {
+		return expenseRepo.getExpensesByPayeur(payeurId);
 	}
 
-	//Ajout FBZ
 	@Override
-	public List<Expense> getAllExpensesByPayeur(int payeurId) {
-		return expenseRepo.getAllExpensesByPayeur(payeurId);
+	public Expense getExpenseById(int id) {
+		return expenseRepo.getExpenseById(id);
+	}
+
+	@Override
+	public void deleteExpenseById(int id) {
+		expenseRepo.deleteById(id);
+	}
+	
+	@Override
+	public Expense saveOrUpdateExpense(Expense expense) {
+		Expense newExpense = expenseRepo.save(expense);
+		return newExpense;
 	}
 }

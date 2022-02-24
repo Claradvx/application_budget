@@ -14,10 +14,14 @@ import fr.poec.java.application_budget.Entities.Participant;
 public interface BudgetRepository extends JpaRepository<Budget, Integer>{
 
     @Query(value = "SELECT b FROM Participant p JOIN p.budget b WHERE p.user.id = :user")
-    List<Budget> getAllBudgetsByIdUser(@Param("user") int userId);
+    List<Budget> getBudgetsByIdUser(@Param("user") int userId);
     
- // Ajout FBZ
+
     @Query(value = "SELECT b.membersBudget FROM Budget b WHERE b.id = :budget")
-    List<Participant> getMembersBudgetById (@Param("budget")int budgetId);
+    List<Participant> getParticipantsByIdBudget(@Param("budget")int budgetId);
+    
+ 
+    @Query(value = "SELECT b FROM Budget b WHERE b.id = :budget")
+    Budget getBudgetById(@Param("budget")int budgetId);
    
 }
