@@ -96,6 +96,13 @@ public class Participant {
 		this.user = user;
 		expenses = new ArrayList<Expense>();
 	}
+	
+	public Participant(String username, Budget budget) {
+		super();
+		this.username = username;
+		this.budget = budget;
+		expenses = new ArrayList<Expense>();
+	}
 
 	public Participant() {
 		super();
