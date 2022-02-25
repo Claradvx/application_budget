@@ -45,4 +45,9 @@ public class BudgetServiceImpl implements BudgetService {
 	public void deleteBudgetById(int id) {
 		budgetRepo.deleteById(id);
 	}
+
+	@Override
+	public int getBudgetByIdMax() {
+		return budgetRepo.getBudgetByIdMax();
+	}
 }

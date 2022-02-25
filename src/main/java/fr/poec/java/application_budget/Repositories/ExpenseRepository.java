@@ -15,10 +15,10 @@ public interface ExpenseRepository extends JpaRepository<Expense, Integer>{
 
 
     @Query(nativeQuery = true, value = "SELECT * FROM expense WHERE budget_id = :budget")
-    List<Expense> getExpensesByIdBudget(@Param("budget") int budgetId);
+    public List<Expense> getExpensesByIdBudget(@Param("budget") int budgetId);
    
     @Query(value = "SELECT e FROM Expense e WHERE e.payeur.id = :payeur")
-    List<Expense> getExpensesByPayeur(@Param("payeur") int payeurId);
+    public List<Expense> getExpensesByPayeur(@Param("payeur") int payeurId);
     
 	public Expense getExpenseById(int id);
    

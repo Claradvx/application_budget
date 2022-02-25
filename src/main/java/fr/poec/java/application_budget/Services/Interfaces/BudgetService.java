@@ -21,5 +21,6 @@ public interface BudgetService {
 	
 	public void deleteBudgetById(int id);
 	
+	public int getBudgetByIdMax();
 
 }

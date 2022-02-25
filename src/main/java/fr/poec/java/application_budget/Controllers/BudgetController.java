@@ -41,6 +41,12 @@ public class BudgetController {
 		return budgetService.getBudgetById(id);
 	}
 	
+	@GetMapping(value="budgetmax", produces = "application/json")
+	public Budget getBudgetByIdMax() {
+		int id = budgetService.getBudgetByIdMax();
+		return budgetService.getBudgetById(id);
+	}
+	
 	@DeleteMapping(value="deletebudget{id}", produces = "text/plain")
 	public String deleteBudgetById(@PathVariable int id) {
 		budgetService.deleteBudgetById(id);
