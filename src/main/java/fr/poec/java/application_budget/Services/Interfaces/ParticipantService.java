@@ -2,9 +2,6 @@ package fr.poec.java.application_budget.Services.Interfaces;
 
 import java.util.List;
 
-import org.springframework.data.repository.query.Param;
-
-import fr.poec.java.application_budget.Entities.Expense;
 import fr.poec.java.application_budget.Entities.Participant;
 
 public interface ParticipantService {

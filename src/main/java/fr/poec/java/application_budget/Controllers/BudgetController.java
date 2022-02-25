@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.poec.java.application_budget.Entities.Budget;
 import fr.poec.java.application_budget.Services.Interfaces.BudgetService;
-import fr.poec.java.application_budget.Services.Interfaces.ExpenseService;
-import fr.poec.java.application_budget.Services.Interfaces.ParticipantService;
-import fr.poec.java.application_budget.Services.Interfaces.UserService;
 
 @RestController
 @RequestMapping("/")

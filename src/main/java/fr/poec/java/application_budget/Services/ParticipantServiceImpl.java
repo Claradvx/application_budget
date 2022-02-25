@@ -3,14 +3,12 @@ package fr.poec.java.application_budget.Services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+
 import org.springframework.stereotype.Service;
 
-import fr.poec.java.application_budget.Entities.Expense;
 import fr.poec.java.application_budget.Entities.Participant;
 import fr.poec.java.application_budget.Repositories.ParticipantRepository;
-import fr.poec.java.application_budget.Repositories.UserRepository;
+
 import fr.poec.java.application_budget.Services.Interfaces.ParticipantService;
 
 @Service

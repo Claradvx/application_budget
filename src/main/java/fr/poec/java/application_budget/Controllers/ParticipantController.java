@@ -12,12 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.poec.java.application_budget.Entities.Expense;
 import fr.poec.java.application_budget.Entities.Participant;
 import fr.poec.java.application_budget.Services.Interfaces.BudgetService;
-import fr.poec.java.application_budget.Services.Interfaces.ExpenseService;
 import fr.poec.java.application_budget.Services.Interfaces.ParticipantService;
-import fr.poec.java.application_budget.Services.Interfaces.UserService;
 
 @RestController
 @RequestMapping("/")
