@@ -50,7 +50,7 @@ public class ParticipantController {
 	
 	@PutMapping(value="updateparticipant", consumes="application/json", produces = "text/plain")
 	public String updateParticipant(@RequestBody Participant participant){
-		participantService.saveOrUpdateParticipant(participant);
+		participantService.updateParticipant(participant);
 		return "Participant mis à jour avec succès";
 	}
 

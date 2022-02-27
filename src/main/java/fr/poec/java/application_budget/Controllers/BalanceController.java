@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.poec.java.application_budget.Entities.Balance;
 import fr.poec.java.application_budget.Entities.Expense;
 import fr.poec.java.application_budget.Entities.Participant;
 import fr.poec.java.application_budget.Services.Interfaces.ExpenseService;
@@ -26,14 +27,11 @@ public class BalanceController {
 	@Autowired
 	ExpenseService expenseService;
 
-	
-	@GetMapping(value="budget{id}/balance", produces = "application/json")
-	public ArrayList<double[]> getParticipantsByBudgetId(@PathVariable int id){
-		Map<Integer, Double> scaleMap = new HashMap<>();
+	//RealCost
+	public Map<Integer, Double> getRealCostByParticipant(@PathVariable int id) {
 		Map<Integer, Double> realCostMap = new HashMap<>();
 		double realCost;
-		Map<Integer, Double> paymentMap = new HashMap<>();
-		double payment;
+
 		List<Participant> participants = participantService.getParticipantsByIdBudget(id);
 		for (Participant p : participants) {
 			realCost = 0;
@@ -44,6 +42,16 @@ public class BalanceController {
 			realCostMap.put(p.getId(), realCost);
 		}
 
+		return realCostMap;
+	}
+
+	//Payment
+	public Map<Integer, Double> getPaymentByParticipant(@PathVariable int id) {
+		Map<Integer, Double> paymentMap = new HashMap<>();
+		double payment;
+
+		List<Participant> participants = participantService.getParticipantsByIdBudget(id);
+
 		for (Participant p : participants) {
 			payment = 0;
 			List<Expense> expensesP = expenseService.getExpensesByPayeur(p.getId());
@@ -52,13 +60,73 @@ public class BalanceController {
 			}
 			paymentMap.put(p.getId(), payment);
 		}
+		return paymentMap;
+	}
+
+
+	//scale
+	public Map<Integer, Double> getScaleByParticipant(@PathVariable int id) {
+		Map<Integer, Double> scaleMap = new HashMap<>();
+
+		List<Participant> participants = participantService.getParticipantsByIdBudget(id);
+		Map<Integer, Double> paymentMap = getPaymentByParticipant(id);
+		Map<Integer, Double> realCostMap = getRealCostByParticipant(id);
 
 		for (Participant p : participants) {
 			double scale = (paymentMap.get(p.getId()) - realCostMap.get(p.getId()));
 			scaleMap.put(p.getId(), scale);
 		}
-		
-		ArrayList<double[]> balance = new ArrayList<double[]>();
+
+		return scaleMap;
+	}
+
+//	//valeur mini
+//	public double getMinValue(double minVal, double val) {
+//		if (val < minVal) {
+//			minVal = val;
+//			return minVal;
+//		}else {
+//			return minVal;
+//		}
+//	}
+//
+//	//Id mini
+//	public int getMinId(double minVal, int minId, double val, int key) {
+//		if (val < minVal) {
+//			minId = key;
+//			return minId;
+//		}else {
+//			return minId;
+//		}
+//	}
+//
+//	//valeur maxi
+//	public double getMaxValue(double maxVal, double val) {
+//		if (val > maxVal) {
+//			maxVal = val;
+//			return maxVal;
+//		}else {
+//			return maxVal;
+//		}
+//	}
+//
+//	//Id maxi
+//	public int getMaxId(double maxVal, int maxId, double val, int key) {
+//		if (val < maxVal) {
+//			maxId = key;
+//			return maxId;
+//		}else {
+//			return maxId;
+//		}
+//	}
+
+	//Resultat
+	@GetMapping(value="budget{id}/balance", produces = "application/json")
+	public List<Balance> getBalanceByBudgetId(@PathVariable int id){
+		Map<Integer, Double> scaleMap = getScaleByParticipant(id);
+
+		List<Balance> balance1 = new ArrayList<Balance>();
+	//	ArrayList<double[]> balance = new ArrayList<double[]>();
 		int i = 0;
 		while (scaleMap.size() > 0) {
 			double maxVal = 0;
@@ -77,10 +145,14 @@ public class BalanceController {
 					minVal = val;
 					minId = key;
 				}
+//				minVal = getMinValue(minVal, entry.getValue());
+//				minId = getMinId(minVal, minId, entry.getValue(), entry.getKey());
+//				maxVal = getMaxValue(maxVal, entry.getValue());
+//				maxId = getMaxId(maxVal, maxId, entry.getValue(), entry.getKey());
 			}
-			double idpayeur = 0;
+			int idpayeur = 0;
 			double mt= 0;
-			double idreceveur = 0;
+			int idreceveur = 0;
 			if (maxVal < Math.abs(minVal)) {
 				scaleMap.remove(maxId);
 				double total = 0;
@@ -120,10 +192,12 @@ public class BalanceController {
 					idreceveur = maxId;
 				}
 			}
-			double[] tour = {idpayeur, mt, idreceveur};
-			balance.add(i,tour);
+			//double[] tour = {idpayeur, mt, idreceveur};
+			Balance tour = new Balance(i, participantService.getParticipantById(idpayeur).getUsername(), mt, participantService.getParticipantById(idreceveur).getUsername());
+		//	balance.add(i,tour);
+			balance1.add(tour);
 			i++;
 		}
-		return balance;
+		return balance1;
 	}
 }

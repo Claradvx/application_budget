@@ -7,5 +7,9 @@ import fr.poec.java.application_budget.Entities.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer>{
+	
+	public User findByUsername(String username);
+	
+	public User findById(int id);
 
 }

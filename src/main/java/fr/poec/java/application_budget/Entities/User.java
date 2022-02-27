@@ -1,12 +1,19 @@
 package fr.poec.java.application_budget.Entities;
 
+import java.io.Serializable;
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+@SuppressWarnings("serial")
 @Entity
-public class User {
+public class User implements Serializable, UserDetails{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +23,7 @@ public class User {
 	
 	private String firstname;
 	
-	private String email;
+	private String username;
 	
 	private String password;
 	
@@ -47,12 +54,12 @@ public class User {
 		this.firstname = firstname;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsername(String email) {
+		this.username = email;
 	}
 
 	public String getPassword() {
@@ -75,7 +82,7 @@ public class User {
 		super();
 		this.name = name;
 		this.firstname = firstname;
-		this.email = email;
+		this.username = email;
 		this.password = password;
 		this.age = age;
 	}
@@ -86,9 +93,41 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", firstname=" + firstname + ", email=" + email + ", password="
+		return "User [id=" + id + ", name=" + name + ", firstname=" + firstname + ", username=" + username + ", password="
 				+ password + ", age=" + age + "]";
 	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	
 	
 	
 }

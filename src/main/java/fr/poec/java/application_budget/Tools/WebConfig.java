@@ -1,4 +1,4 @@
-package fr.poec.java.application_budget.Entities;
+package fr.poec.java.application_budget.Tools;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

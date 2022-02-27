@@ -1,8 +1,8 @@
-insert into user(id, name, firstname, email, password, age) values(1, 'BARTHEZ', 'Fanny', 'fanny.barthez@hotmail.fr', 'FBpassword', 37)
-insert into user(id, name, firstname, email, password, age) values(2, 'DEVAUX', 'Clara', 'clara.devaux31@outlook.fr', 'CDpassword', 25)
-insert into user(id, name, firstname, email, password, age) values(3, 'MENDOLA', 'Thomas', 'thomasmendola@outlook.fr', 'TMpassword', 36)
-insert into user(id, name, firstname, email, password, age) values(4, 'CHANEL', 'Marie', 'marie-benedicte.chanel@wanadoo.fr', 'MCpassword', 36)
-insert into user(id, name, firstname, email, password, age) values(5, 'REVILLON', 'Thaïs', 'trevillon@jehann.fr', 'TRpassword', 28)
+insert into user(id, name, firstname, username, password, age) values(1, 'BARTHEZ', 'Fanny', 'fanny.barthez@hotmail.fr', 'FBpassword', 37)
+insert into user(id, name, firstname, username, password, age) values(2, 'DEVAUX', 'Clara', 'clara.devaux31@outlook.fr', 'CDpassword', 25)
+insert into user(id, name, firstname, username, password, age) values(3, 'MENDOLA', 'Thomas', 'thomasmendola@outlook.fr', 'TMpassword', 36)
+insert into user(id, name, firstname, username, password, age) values(4, 'CHANEL', 'Marie', 'marie-benedicte.chanel@wanadoo.fr', 'MCpassword', 36)
+insert into user(id, name, firstname, username, password, age) values(5, 'REVILLON', 'Thaïs', 'trevillon@jehann.fr', 'TRpassword', 28)
 
 insert into budget(id, name, description) values(1, "Vacances Corse", "Départ Lyon - Bateau - Location voiture et plage dans les calanques au soleil. Du 12/08/2021 au 25/08/2021")
 insert into budget(id, name, description) values(2, "Anniversaire Fanny", "Cagnotte pour la soirée et cadeau d'anniversaire")

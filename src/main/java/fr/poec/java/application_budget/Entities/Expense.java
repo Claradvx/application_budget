@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Expense {
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -41,7 +42,7 @@ public class Expense {
 	//Participants concernés par la dépense
 	@ManyToMany
 	@JoinTable(name = "participant_expense", joinColumns = @JoinColumn(name = "expense_id"), inverseJoinColumns = @JoinColumn(name = "participant_id"))
-	@JsonIgnore
+	//@JsonIgnore
 	private List<Participant> beneficiaires;
 
 	public int getId() {

@@ -230,18 +230,18 @@ public class App implements CommandLineRunner{
 	
 	System.out.println("-----------------------Montant des scales par participant--------------------------- ");
 	
-	//Ajouter List<Participant> dans budget pour faire un foreach (Participant p : lstpartBudget) => obligation de MAJ un attribut Scale?
+	//Ajouter List<Participant> dans budget pour faire un foreach (Participant p : lstpartBudget) => obligation de MAJ un attribut Balance?
 	double scaleF = paymentF - partF;
-	System.out.println("Montant Scale Fanny : " + scaleF);
+	System.out.println("Montant Balance Fanny : " + scaleF);
 	
 	double scaleC = paymentC - partC;
-	System.out.println("Montant Scale Clara : " + scaleC);
+	System.out.println("Montant Balance Clara : " + scaleC);
 	
 	double scaleT = paymentT - partT;
-	System.out.println("Montant Scale Thomas : " + scaleT);
+	System.out.println("Montant Balance Thomas : " + scaleT);
 	
 	double scaleM = paymentM - partM;
-	System.out.println("Montant Scale Marie : " + scaleM);
+	System.out.println("Montant Balance Marie : " + scaleM);
 	
 	System.out.println("-----------------------Boucle balance--------------------------- ");
 	

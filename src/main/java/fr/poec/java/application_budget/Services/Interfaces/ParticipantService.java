@@ -15,5 +15,7 @@ public interface ParticipantService {
 	public void deleteParticipantById(int id);
 	
 	public Participant saveOrUpdateParticipant(Participant participant);
+	
+	public Participant updateParticipant(Participant participant);
     
 }

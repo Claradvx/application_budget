@@ -2,6 +2,7 @@ package fr.poec.java.application_budget.Services;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,9 @@ public class ExpenseServiceImpl implements ExpenseService {
 	
 	@Autowired
 	private ExpenseRepository expenseRepo;
-
+	
+    @Autowired
+    private ModelMapper mapper;
 
 	@Override
 	public List<Expense> getExpensesByIdBudget(int budgetId) {
