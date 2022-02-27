@@ -30,10 +30,10 @@ public class BudgetServiceImpl implements BudgetService {
 		return budgetRepo.getBudgetsByIdUser(userId);
 	}
 
-	@Override
-	public List<Participant> getParticipantsByIdBudget(int budgetId) {
-		return budgetRepo.getParticipantsByIdBudget(budgetId);
-	}
+//	@Override
+//	public List<Participant> getParticipantsByIdBudget(int budgetId) {
+//		return budgetRepo.getParticipantsByIdBudget(budgetId);
+//	}
 
 	@Override
 	public Budget saveOrUpdateBudget(Budget budget) {

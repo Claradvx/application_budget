@@ -3,14 +3,13 @@ package fr.poec.java.application_budget.Services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
-import fr.poec.java.application_budget.Entities.Budget;
-import fr.poec.java.application_budget.Entities.Expense;
+import fr.poec.java.application_budget.Dto.ParticipantDto;
 import fr.poec.java.application_budget.Entities.Participant;
-import fr.poec.java.application_budget.Entities.User;
 import fr.poec.java.application_budget.Repositories.ParticipantRepository;
 
 import fr.poec.java.application_budget.Services.Interfaces.ParticipantService;
@@ -20,6 +19,9 @@ public class ParticipantServiceImpl implements ParticipantService {
 
 	@Autowired
 	ParticipantRepository participantRepo;
+	
+    @Autowired
+    private ModelMapper mapper;
 
 	@Override
 	public List<Participant> getParticipantsByIdUser(int userId) {
@@ -59,6 +61,23 @@ public class ParticipantServiceImpl implements ParticipantService {
 			newParticipant.setBudget(participant.getBudget());
 		}
 		return participantRepo.save(newParticipant);
+	}
+
+	//Ajout test Dto
+	@Override
+	public ParticipantDto getParticipantDtoById(int id) {
+		ParticipantDto participantDto = mapper.map(participantRepo.getParticipantById(id), ParticipantDto.class);
+		return participantDto;
+	}
+
+	@Override
+	public List<ParticipantDto> getParticipantsDtoByIdBudget(int budgetId) {
+		List<ParticipantDto> lstDto = new ArrayList<>();
+		List<Participant> lst = participantRepo.getParticipantsByIdBudget(budgetId);
+		for (Participant p : lst) {
+			lstDto.add(mapper.map(p, ParticipantDto.class));
+		}
+		return lstDto;
 	}
 	
 }

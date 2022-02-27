@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import fr.poec.java.application_budget.Dto.ExpenseDto;
 import fr.poec.java.application_budget.Entities.Expense;
 
 @Repository
@@ -21,12 +20,5 @@ public interface ExpenseRepository extends JpaRepository<Expense, Integer>{
     public List<Expense> getExpensesByPayeur(@Param("payeur") int payeurId);
     
 	public Expense getExpenseById(int id);
-	
-	//Ajout tests DTO
-	public List<ExpenseDto> getExpensesDtoByIdBudget(int budgetId);
-
-	public List<ExpenseDto> getExpensesDtoByPayeur(int payeurId);
-
-	public ExpenseDto getExpenseDtoById(int id);
    
 }

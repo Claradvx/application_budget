@@ -12,8 +12,6 @@ public class ExpenseDto {
 	private String name;
 
 	private String description;
-
-	private Budget budget;
 	
 	private double montant;
 	
@@ -45,14 +43,6 @@ public class ExpenseDto {
 		this.description = description;
 	}
 
-	public Budget getBudget() {
-		return budget;
-	}
-
-	public void setBudget(Budget budget) {
-		this.budget = budget;
-	}
-
 	public double getMontant() {
 		return montant;
 	}
@@ -77,12 +67,11 @@ public class ExpenseDto {
 		this.beneficiaires = beneficiaires;
 	}
 
-	public ExpenseDto(String name, String description, Budget budget, double montant, ParticipantDto payeur,
+	public ExpenseDto(String name, String description, double montant, ParticipantDto payeur,
 			List<ParticipantDto> beneficiaires) {
 		super();
 		this.name = name;
 		this.description = description;
-		this.budget = budget;
 		this.montant = montant;
 		this.payeur = payeur;
 		beneficiaires = new ArrayList<ParticipantDto>();

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.poec.java.application_budget.Dto.ExpenseDto;
 import fr.poec.java.application_budget.Entities.Expense;
 import fr.poec.java.application_budget.Services.Interfaces.ExpenseService;
 
@@ -23,14 +24,26 @@ public class ExpenseController {
 	ExpenseService expenseService;
 	
 	
+//	@GetMapping(value="budget{id}/expenses", produces = "application/json")
+//	public List<Expense> getExpensesByIdBudget(@PathVariable int id){
+//		return expenseService.getExpensesByIdBudget(id);
+//	}
+
+	//On ne récupère pas les bénéficiaires des dépenses a cause des json ignore
+//	@GetMapping(value="expense{id}", produces = "application/json")
+//	public Expense getExpenseById(@PathVariable int id) {
+//		return expenseService.getExpenseById(id);
+//	}
+	
+
 	@GetMapping(value="budget{id}/expenses", produces = "application/json")
-	public List<Expense> getExpensesByIdBudget(@PathVariable int id){
-		return expenseService.getExpensesByIdBudget(id);
+	public List<ExpenseDto> getExpensesDtoByIdBudget(@PathVariable int id){
+		return expenseService.getExpensesDtoByIdBudget(id);
 	}
 	
 	@GetMapping(value="expense{id}", produces = "application/json")
-	public Expense getExpenseById(@PathVariable int id) {
-		return expenseService.getExpenseById(id);
+	public ExpenseDto getExpenseDtoById(@PathVariable int id) {
+		return expenseService.getExpenseDtoById(id);
 	}
 	
 	@DeleteMapping(value="deleteexpense{id}", produces = "text/plain")

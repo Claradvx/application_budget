@@ -29,14 +29,14 @@ public class Expense {
 	//To do : Category
 	
 	@ManyToOne
-	@JsonIgnore
+	//@JsonIgnore
 	private Budget budget;
 	
 	private double montant;
 	
 	//Participant ayant payé. Peux ne pas être concerné par la dépense
 	@ManyToOne
-	@JsonIgnore
+	//@JsonIgnore
 	private Participant payeur;
 	
 	//Participants concernés par la dépense

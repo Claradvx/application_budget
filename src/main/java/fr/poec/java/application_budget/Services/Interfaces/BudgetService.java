@@ -13,7 +13,7 @@ public interface BudgetService {
 	
 	public List<Budget> getBudgetsByIdUser(int userId);
 
-	public List <Participant> getParticipantsByIdBudget(int budgetId);
+//	public List <Participant> getParticipantsByIdBudget(int budgetId);
 	
 	public Budget saveOrUpdateBudget(Budget budget);
 	

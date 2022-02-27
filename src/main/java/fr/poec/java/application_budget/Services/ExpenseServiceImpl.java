@@ -1,11 +1,13 @@
 package fr.poec.java.application_budget.Services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fr.poec.java.application_budget.Dto.ExpenseDto;
 import fr.poec.java.application_budget.Entities.Expense;
 import fr.poec.java.application_budget.Repositories.ExpenseRepository;
 import fr.poec.java.application_budget.Services.Interfaces.ExpenseService;
@@ -44,5 +46,32 @@ public class ExpenseServiceImpl implements ExpenseService {
 	public Expense saveOrUpdateExpense(Expense expense) {
 		Expense newExpense = expenseRepo.save(expense);
 		return newExpense;
+	}
+	
+	//tests DTO
+	@Override
+	public List<ExpenseDto> getExpensesDtoByIdBudget(int budgetId) {
+		List<ExpenseDto> lstDto = new ArrayList<ExpenseDto>();
+		List<Expense> lst = expenseRepo.getExpensesByIdBudget(budgetId);
+		for (Expense e : lst) {
+			lstDto.add(mapper.map(e, ExpenseDto.class));
+		}
+		return lstDto;
+	}
+	
+//	@Override
+//	public List<ExpenseDto> getExpensesDtoByPayeur(int payeurId) {
+//		List<ExpenseDto> lstDto = new ArrayList<ExpenseDto>();
+//		List<Expense> lst = expenseRepo.getExpensesByPayeur(payeurId);
+//		for (Expense e : lst) {
+//			lstDto.add(mapper.map(e, ExpenseDto.class));
+//		}
+//		return lstDto;
+//	}
+
+	@Override
+	public ExpenseDto getExpenseDtoById(int id) {
+		ExpenseDto expenseDto = mapper.map(expenseRepo.getExpenseById(id), ExpenseDto.class);
+		return expenseDto;
 	}
 }

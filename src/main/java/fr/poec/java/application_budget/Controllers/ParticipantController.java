@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.poec.java.application_budget.Dto.ParticipantDto;
 import fr.poec.java.application_budget.Entities.Participant;
 import fr.poec.java.application_budget.Services.Interfaces.BudgetService;
 import fr.poec.java.application_budget.Services.Interfaces.ParticipantService;
@@ -21,26 +22,35 @@ import fr.poec.java.application_budget.Services.Interfaces.ParticipantService;
 public class ParticipantController {
 	
 	@Autowired
-	BudgetService budgetService;
-
-	@Autowired
 	ParticipantService participantService;
 
 	
+//	@GetMapping(value="budget{id}/participants", produces = "application/json")
+//	public List<Participant> getParticipantsByIdBudget(@PathVariable int id){
+//		return budgetService.getParticipantsByIdBudget(id);
+//	}
+	
 	@GetMapping(value="budget{id}/participants", produces = "application/json")
-	public List<Participant> getParticipantsByIdBudget(@PathVariable int id){
-		return budgetService.getParticipantsByIdBudget(id);
+	public List<ParticipantDto> getParticipantsDtoByIdBudget(@PathVariable int id){
+		return participantService.getParticipantsDtoByIdBudget(id);
 	}
+	
+//	@GetMapping(value="participant{id}", produces = "application/json")
+//	public Participant getParticipantById(@PathVariable int id){
+//		return participantService.getParticipantById(id);
+//	}
+	
+	@GetMapping(value="participant{id}", produces = "application/json")
+	public ParticipantDto getParticipantDtoById(@PathVariable int id){
+		return participantService.getParticipantDtoById(id);
+	}
+	
 	
 	@GetMapping(value="user{id}/participants", produces = "application/json")
 	public List<Participant> getParticipantsByIdUser(@PathVariable int id){
 		return participantService.getParticipantsByIdUser(id);
 	}
 	
-	@GetMapping(value="participant{id}", produces = "application/json")
-	public Participant getParticipantById(@PathVariable int id){
-		return participantService.getParticipantById(id);
-	}
 	
 	@DeleteMapping(value="deleteparticipant{id}", produces = "text/plain")
 	public String deleteParticipantById(@PathVariable int id) {
