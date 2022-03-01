@@ -3,8 +3,6 @@ package fr.poec.java.application_budget.Dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.poec.java.application_budget.Entities.Budget;
-
 public class ExpenseDto {
 	
 	private int id;

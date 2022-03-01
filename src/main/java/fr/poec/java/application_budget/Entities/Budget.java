@@ -3,6 +3,7 @@ package fr.poec.java.application_budget.Entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,7 +27,7 @@ public class Budget {
 	
 	//Liste des participants au budget
 	//Test relation bi directionnelle
-	@OneToMany(mappedBy = "budget")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "budget")
 	@JsonIgnore
 	private List<Participant> membersBudget;
 	
@@ -37,7 +38,7 @@ public class Budget {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	
 	public List<Participant> getMembersBudget() {
 		return membersBudget;
 	}

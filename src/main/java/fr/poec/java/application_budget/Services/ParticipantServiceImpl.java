@@ -44,23 +44,23 @@ public class ParticipantServiceImpl implements ParticipantService {
 	}
 
 	@Override
-	public Participant saveOrUpdateParticipant(Participant participant) {
-		Participant newParticipant = participantRepo.save(participant);
-		return newParticipant;
+	public Participant saveOrUpdateParticipant(Participant participantUpdated) {
+		Participant existingParticipant = participantRepo.save(participantUpdated);
+		return existingParticipant;
 	}
 	
-	public Participant updateParticipant(Participant participant) {
-		Participant newParticipant = getParticipantById(participant.getId());
-		if (participant.getUsername() != null) {
-			newParticipant.setUsername(participant.getUsername());
+	public Participant updateParticipant(Participant participantUpdated) {
+		Participant existingParticipant = getParticipantById(participantUpdated.getId());
+		if (participantUpdated.getUsername() != null) {
+			existingParticipant.setUsername(participantUpdated.getUsername());
 		}
-		if (participant.getUser() != null) {
-			newParticipant.setUser(participant.getUser());
+		if (participantUpdated.getUser() != null) {
+			existingParticipant.setUser(participantUpdated.getUser());
 		}
-		if (participant.getBudget() != null) {
-			newParticipant.setBudget(participant.getBudget());
+		if (participantUpdated.getBudget() != null) {
+			existingParticipant.setBudget(participantUpdated.getBudget());
 		}
-		return participantRepo.save(newParticipant);
+		return participantRepo.save(existingParticipant);
 	}
 
 	//Ajout test Dto

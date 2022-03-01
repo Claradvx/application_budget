@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.poec.java.application_budget.Dto.ParticipantDto;
 import fr.poec.java.application_budget.Entities.Participant;
-import fr.poec.java.application_budget.Services.Interfaces.BudgetService;
 import fr.poec.java.application_budget.Services.Interfaces.ParticipantService;
 
 @RestController

@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.poec.java.application_budget.Entities.Budget;
+import fr.poec.java.application_budget.Entities.Expense;
+import fr.poec.java.application_budget.Entities.Participant;
 import fr.poec.java.application_budget.Services.Interfaces.BudgetService;
+import fr.poec.java.application_budget.Services.Interfaces.ExpenseService;
+import fr.poec.java.application_budget.Services.Interfaces.ParticipantService;
 
 @RestController
 @RequestMapping("/")
@@ -21,6 +25,12 @@ public class BudgetController {
 
 	@Autowired
 	BudgetService budgetService;
+	
+	@Autowired
+	ParticipantService participantService;
+	
+	@Autowired
+	ExpenseService expenseService;
 
 	
 	@GetMapping(value="budgets", produces = "application/json")
@@ -44,10 +54,27 @@ public class BudgetController {
 		return budgetService.getBudgetById(id);
 	}
 	
+	
+	// récupérer la liste des participants du budget
+	// suppression de chaque participant
+	// suppression du budget
 	@DeleteMapping(value="deletebudget{id}", produces = "text/plain")
 	public String deleteBudgetById(@PathVariable int id) {
+		List<Participant> lstParticipants = participantService.getParticipantsByIdBudget(id);
+		List<Expense> lstExpenses = expenseService.getExpensesByIdBudget(id);
+		String message = "";
+		
+		for (Expense e : lstExpenses) {
+			expenseService.deleteExpenseById(e.getId());
+			message += " \n expense " + e.getId();
+		}
+	
+		for (Participant p : lstParticipants) {
+			participantService.deleteParticipantById(p.getId());
+			message += " \n participant " + p.getId();
+		}
 		budgetService.deleteBudgetById(id);
-		return "Budget supprimé";
+		return "Budget supprimé "  + message;
 	}
 	
 	@PutMapping(value="updatebudget", consumes="application/json", produces = "text/plain")
@@ -57,11 +84,11 @@ public class BudgetController {
 		return "Budget mis à jour avec succès";
 	}
 
-	@PostMapping(value="savebudget", consumes="application/json", produces = "text/plain")
+	@PostMapping(value="savebudget", consumes="application/json", produces = "application/json")
 	//@PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String saveBudget(@RequestBody Budget budget){
+	public int saveBudget(@RequestBody Budget budget){
 		budgetService.saveOrUpdateBudget(budget);
-		return "Budget sauvegardé avec succès";
+		return budget.getId();
 	}
 
 }

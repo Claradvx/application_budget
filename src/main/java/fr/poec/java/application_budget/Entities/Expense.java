@@ -3,6 +3,7 @@ package fr.poec.java.application_budget.Entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,20 +30,20 @@ public class Expense {
 	//To do : Category
 	
 	@ManyToOne
-	//@JsonIgnore
+	@JsonIgnore
 	private Budget budget;
 	
 	private double montant;
 	
 	//Participant ayant payé. Peux ne pas être concerné par la dépense
 	@ManyToOne
-	//@JsonIgnore
+	@JsonIgnore
 	private Participant payeur;
 	
 	//Participants concernés par la dépense
 	@ManyToMany
 	@JoinTable(name = "participant_expense", joinColumns = @JoinColumn(name = "expense_id"), inverseJoinColumns = @JoinColumn(name = "participant_id"))
-	//@JsonIgnore
+	@JsonIgnore
 	private List<Participant> beneficiaires;
 
 	public int getId() {
