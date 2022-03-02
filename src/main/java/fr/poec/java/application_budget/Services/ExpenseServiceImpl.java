@@ -48,7 +48,28 @@ public class ExpenseServiceImpl implements ExpenseService {
 		return newExpense;
 	}
 	
-	//tests DTO
+	@Override
+	public Expense updateExpense(Expense expenseUpdated) {
+		Expense existingExpense = expenseRepo.getExpenseById(expenseUpdated.getId());
+		
+		if (expenseUpdated.getName() != null) {
+			existingExpense.setName(expenseUpdated.getName());
+		}
+		if (expenseUpdated.getDescription() != null) {
+			existingExpense.setDescription(expenseUpdated.getDescription());
+		}
+		if (expenseUpdated.getMontant() != 0) {
+			existingExpense.setMontant(expenseUpdated.getMontant());
+		}
+		if (expenseUpdated.getPayeur() != null) {
+			existingExpense.setPayeur(expenseUpdated.getPayeur());
+		}
+		if (expenseUpdated.getBeneficiaires() != null) {
+			existingExpense.setBeneficiaires(expenseUpdated.getBeneficiaires());
+		}
+		return expenseRepo.save(existingExpense);
+	}
+	
 	@Override
 	public List<ExpenseDto> getExpensesDtoByIdBudget(int budgetId) {
 		List<ExpenseDto> lstDto = new ArrayList<ExpenseDto>();
@@ -58,16 +79,6 @@ public class ExpenseServiceImpl implements ExpenseService {
 		}
 		return lstDto;
 	}
-	
-//	@Override
-//	public List<ExpenseDto> getExpensesDtoByPayeur(int payeurId) {
-//		List<ExpenseDto> lstDto = new ArrayList<ExpenseDto>();
-//		List<Expense> lst = expenseRepo.getExpensesByPayeur(payeurId);
-//		for (Expense e : lst) {
-//			lstDto.add(mapper.map(e, ExpenseDto.class));
-//		}
-//		return lstDto;
-//	}
 
 	@Override
 	public ExpenseDto getExpenseDtoById(int id) {

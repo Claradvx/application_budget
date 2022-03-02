@@ -57,6 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.authorizeRequests()
 		.antMatchers("/login").permitAll()
 		.antMatchers("/logout").permitAll()
+		// Liste des urls avec connexion
 		.antMatchers("/employes").authenticated()
 		.anyRequest().permitAll();
 		

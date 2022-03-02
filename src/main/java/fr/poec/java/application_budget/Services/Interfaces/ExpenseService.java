@@ -17,10 +17,9 @@ public interface ExpenseService {
 	
 	public Expense saveOrUpdateExpense(Expense expense);
 	
-	//Ajout tests DTO
+	public Expense updateExpense(Expense expense);
+	
 	public List<ExpenseDto> getExpensesDtoByIdBudget(int budgetId);
-
-//	public List<ExpenseDto> getExpensesDtoByPayeur(int payeurId);
 
 	public ExpenseDto getExpenseDtoById(int id);
 	

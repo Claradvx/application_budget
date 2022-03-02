@@ -15,11 +15,10 @@ public interface ParticipantService {
     
 	public void deleteParticipantById(int id);
 	
-	public Participant saveOrUpdateParticipant(Participant participant);
+	public Participant saveParticipant(Participant participant);
 	
 	public Participant updateParticipant(Participant participant);
 	
-	//Ajout test Dto
 	 public ParticipantDto getParticipantDtoById(int id);
 	 
 	 public List <ParticipantDto> getParticipantsDtoByIdBudget (int budgetId);

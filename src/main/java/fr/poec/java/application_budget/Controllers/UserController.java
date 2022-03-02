@@ -21,4 +21,9 @@ public class UserController {
 		return (User) userService.findById(id);
 	}
 
+	@GetMapping (value="login", produces="application/json")
+	public User SignIn (@PathVariable int id) {
+		return (User) userService.findById(id);
+	}
+	
 }

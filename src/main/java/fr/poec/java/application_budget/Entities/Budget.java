@@ -27,7 +27,7 @@ public class Budget {
 	
 	//Liste des participants au budget
 	//Test relation bi directionnelle
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "budget")
+	@OneToMany(mappedBy = "budget")
 	@JsonIgnore
 	private List<Participant> membersBudget;
 	

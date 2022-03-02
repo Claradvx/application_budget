@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import fr.poec.java.application_budget.Entities.Budget;
-import fr.poec.java.application_budget.Entities.Participant;
 
 @Repository
 public interface BudgetRepository extends JpaRepository<Budget, Integer>{

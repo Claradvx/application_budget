@@ -9,6 +9,8 @@ public class ParticipantDto {
 	private String username;
 	
 	private User user;
+	
+	private BudgetDto budget;
 
 	public int getId() {
 		return id;
@@ -34,19 +36,25 @@ public class ParticipantDto {
 		this.user = user;
 	}
 
-	public ParticipantDto(String username, User user) {
+	public BudgetDto getBudget() {
+		return budget;
+	}
+
+	public void setBudget(BudgetDto budget) {
+		this.budget = budget;
+	}
+
+	public ParticipantDto(String username, User user, BudgetDto budget) {
 		super();
 		this.username = username;
 		this.user = user;
-	}
-	
-	public ParticipantDto(String username) {
-		super();
-		this.username = username;
+		this.budget = budget;
 	}
 
 	public ParticipantDto() {
 		super();
 	}
+	
+	
 	
 }

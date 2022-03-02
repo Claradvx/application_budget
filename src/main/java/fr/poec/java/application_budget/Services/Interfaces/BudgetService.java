@@ -3,7 +3,6 @@ package fr.poec.java.application_budget.Services.Interfaces;
 import java.util.List;
 
 import fr.poec.java.application_budget.Entities.Budget;
-import fr.poec.java.application_budget.Entities.Participant;
 
 public interface BudgetService {
 	
@@ -15,7 +14,9 @@ public interface BudgetService {
 
 //	public List <Participant> getParticipantsByIdBudget(int budgetId);
 	
-	public Budget saveOrUpdateBudget(Budget budget);
+	public Budget updateBudget(Budget budget);
+	
+	public Budget saveBudget(Budget budget);
 	
 	public void deleteBudgetById(int id);
 	

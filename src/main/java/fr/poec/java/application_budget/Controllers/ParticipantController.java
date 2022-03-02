@@ -2,6 +2,7 @@ package fr.poec.java.application_budget.Controllers;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,9 @@ public class ParticipantController {
 	
 	@Autowired
 	ParticipantService participantService;
+	
+    @Autowired
+    private ModelMapper mapper;
 
 	
 //	@GetMapping(value="budget{id}/participants", produces = "application/json")
@@ -57,15 +61,17 @@ public class ParticipantController {
 		return "Participant supprimé";
 	}
 	
-	@PutMapping(value="updateparticipant", consumes="application/json", produces = "text/plain")
-	public String updateParticipant(@RequestBody Participant participant){
+	@PutMapping(value="updateparticipant", consumes="application/json", produces = "application/json")
+	public Participant updateParticipant(@RequestBody ParticipantDto participantDto){
+		Participant participant = mapper.map(participantDto, Participant.class);
 		participantService.updateParticipant(participant);
-		return "Participant mis à jour avec succès";
+		return participant;
 	}
 
-	@PostMapping(value="saveparticipant", consumes="application/json", produces = "text/plain")
-	public String saveParticipant(@RequestBody Participant participant){
-		participantService.saveOrUpdateParticipant(participant);
-		return "Participant sauvegardé avec succès";
+	@PostMapping(value="saveparticipant", consumes="application/json", produces = "application/json")
+	public Participant saveParticipant(@RequestBody ParticipantDto participantDto){
+		Participant participant = mapper.map(participantDto, Participant.class);
+		participantService.saveParticipant(participant);
+		return participant;
 	}
 }

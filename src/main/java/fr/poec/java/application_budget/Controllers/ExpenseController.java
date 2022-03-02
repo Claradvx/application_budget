@@ -2,6 +2,7 @@ package fr.poec.java.application_budget.Controllers;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,17 +24,8 @@ public class ExpenseController {
 	@Autowired
 	ExpenseService expenseService;
 	
-	
-//	@GetMapping(value="budget{id}/expenses", produces = "application/json")
-//	public List<Expense> getExpensesByIdBudget(@PathVariable int id){
-//		return expenseService.getExpensesByIdBudget(id);
-//	}
-
-	//On ne récupère pas les bénéficiaires des dépenses a cause des json ignore
-//	@GetMapping(value="expense{id}", produces = "application/json")
-//	public Expense getExpenseById(@PathVariable int id) {
-//		return expenseService.getExpenseById(id);
-//	}
+    @Autowired
+    private ModelMapper mapper;
 	
 
 	@GetMapping(value="budget{id}/expenses", produces = "application/json")
@@ -52,10 +44,11 @@ public class ExpenseController {
 		return "Dépense supprimée";
 	}
 	
-	@PutMapping(value="updateexpense", consumes="application/json", produces = "text/plain")
-	public String updateExpense(@RequestBody Expense expense){
-		expenseService.saveOrUpdateExpense(expense);
-		return "Dépense mise à jour avec succès";
+	@PutMapping(value="updateexpense", consumes="application/json", produces = "application/json")
+	public Expense updateExpense(@RequestBody ExpenseDto expenseDto){
+		Expense expense = mapper.map(expenseDto, Expense.class);
+		expenseService.updateExpense(expense);
+		return expense;
 	}
 
 	@PostMapping(value="saveexpense", consumes="application/json", produces = "text/plain")

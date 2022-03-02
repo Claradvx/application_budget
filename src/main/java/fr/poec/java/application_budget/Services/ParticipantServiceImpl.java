@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import fr.poec.java.application_budget.Dto.ParticipantDto;
 import fr.poec.java.application_budget.Entities.Participant;
 import fr.poec.java.application_budget.Repositories.ParticipantRepository;
-
+import fr.poec.java.application_budget.Services.Interfaces.ExpenseService;
 import fr.poec.java.application_budget.Services.Interfaces.ParticipantService;
 
 @Service
@@ -19,6 +19,9 @@ public class ParticipantServiceImpl implements ParticipantService {
 
 	@Autowired
 	ParticipantRepository participantRepo;
+	
+	@Autowired
+	ExpenseService expenseService;
 	
     @Autowired
     private ModelMapper mapper;
@@ -40,13 +43,16 @@ public class ParticipantServiceImpl implements ParticipantService {
 
 	@Override
 	public void deleteParticipantById(int id) {
-		participantRepo.deleteById(id);
+//		Participant participant = participantRepo.getParticipantById(id);
+//		if (participant.getBudget() == null && expenseService.getExpensesByPayeur(participant.getId()) == null && participant.getExpenses() == null) {
+			participantRepo.deleteById(id);	
+//		}
 	}
 
 	@Override
-	public Participant saveOrUpdateParticipant(Participant participantUpdated) {
-		Participant existingParticipant = participantRepo.save(participantUpdated);
-		return existingParticipant;
+	public Participant saveParticipant(Participant participantUpdated) {
+		participantRepo.save(participantUpdated);
+		return participantUpdated;
 	}
 	
 	public Participant updateParticipant(Participant participantUpdated) {
@@ -57,12 +63,10 @@ public class ParticipantServiceImpl implements ParticipantService {
 		if (participantUpdated.getUser() != null) {
 			existingParticipant.setUser(participantUpdated.getUser());
 		}
-		if (participantUpdated.getBudget() != null) {
-			existingParticipant.setBudget(participantUpdated.getBudget());
-		}
 		return participantRepo.save(existingParticipant);
 	}
 
+	
 	//Ajout test Dto
 	@Override
 	public ParticipantDto getParticipantDtoById(int id) {
