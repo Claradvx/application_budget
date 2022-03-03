@@ -74,59 +74,19 @@ public class BalanceController {
 
 		for (Participant p : participants) {
 			double scale = (paymentMap.get(p.getId()) - realCostMap.get(p.getId()));
+			if (scale != 0) {
 			scaleMap.put(p.getId(), scale);
+			}
 		}
 
 		return scaleMap;
 	}
 
-//	//valeur mini
-//	public double getMinValue(double minVal, double val) {
-//		if (val < minVal) {
-//			minVal = val;
-//			return minVal;
-//		}else {
-//			return minVal;
-//		}
-//	}
-//
-//	//Id mini
-//	public int getMinId(double minVal, int minId, double val, int key) {
-//		if (val < minVal) {
-//			minId = key;
-//			return minId;
-//		}else {
-//			return minId;
-//		}
-//	}
-//
-//	//valeur maxi
-//	public double getMaxValue(double maxVal, double val) {
-//		if (val > maxVal) {
-//			maxVal = val;
-//			return maxVal;
-//		}else {
-//			return maxVal;
-//		}
-//	}
-//
-//	//Id maxi
-//	public int getMaxId(double maxVal, int maxId, double val, int key) {
-//		if (val < maxVal) {
-//			maxId = key;
-//			return maxId;
-//		}else {
-//			return maxId;
-//		}
-//	}
-
 	//Resultat
 	@GetMapping(value="budget{id}/scale", produces = "application/json")
 	public List<Balance> getBalanceByBudgetId(@PathVariable int id){
 		Map<Integer, Double> scaleMap = getScaleByParticipant(id);
-
-		List<Balance> balance1 = new ArrayList<Balance>();
-	//	ArrayList<double[]> balance = new ArrayList<double[]>();
+		List<Balance> balance = new ArrayList<Balance>();
 		int i = 0;
 		while (scaleMap.size() > 0) {
 			double maxVal = 0;
@@ -145,10 +105,7 @@ public class BalanceController {
 					minVal = val;
 					minId = key;
 				}
-//				minVal = getMinValue(minVal, entry.getValue());
-//				minId = getMinId(minVal, minId, entry.getValue(), entry.getKey());
-//				maxVal = getMaxValue(maxVal, entry.getValue());
-//				maxId = getMaxId(maxVal, maxId, entry.getValue(), entry.getKey());
+
 			}
 			int idpayeur = 0;
 			double mt= 0;
@@ -192,12 +149,10 @@ public class BalanceController {
 					idreceveur = maxId;
 				}
 			}
-			//double[] tour = {idpayeur, mt, idreceveur};
 			Balance tour = new Balance(i, participantService.getParticipantById(idpayeur).getUsername(), mt, participantService.getParticipantById(idreceveur).getUsername());
-		//	balance.add(i,tour);
-			balance1.add(tour);
+			balance.add(tour);
 			i++;
 		}
-		return balance1;
+		return balance;
 	}
 }
