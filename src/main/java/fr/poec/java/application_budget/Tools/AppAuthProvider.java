@@ -19,10 +19,8 @@ public class AppAuthProvider extends DaoAuthenticationProvider{
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		
 		UsernamePasswordAuthenticationToken auth = (UsernamePasswordAuthenticationToken) authentication;
-		
 		String username = auth.getName();
 		String password = auth.getCredentials().toString();
-		
 		UserDetails user = userDetailsService.loadUserByUsername(username);
 	
 		//user contient un password cryptÃ© - on doit crypter le password saisi par l'utilisateur cÃ´tÃ© front

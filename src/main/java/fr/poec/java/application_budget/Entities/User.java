@@ -86,6 +86,12 @@ public class User implements Serializable, UserDetails{
 		this.password = password;
 		this.age = age;
 	}
+	
+	public User(String email, String password) {
+		super();
+		this.username = email;
+		this.password = password;
+	}
 
 	public User() {
 		super();

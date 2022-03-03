@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -40,26 +41,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		http.csrf()
 		.disable() //blocage des requÃªtes qui proviennent d'un poste non authentifiÃ©
-		.exceptionHandling() //dÃ©clencher une exception
-		.authenticationEntryPoint(new Http403ForbiddenEntryPoint()) //ressource inexistante
+		.authorizeRequests()
+		.antMatchers("/signin").permitAll()
+	//	.and()
+	//	.exceptionHandling() //dÃ©clencher une exception
+	//	.authenticationEntryPoint(new Http403ForbiddenEntryPoint()) //ressource inexistante
 		.and()
 		.authenticationProvider(getProvider())
-		.formLogin()
-		.loginProcessingUrl("/login")
-		.successHandler(new AuthenticationSuccessLoginHandler())
-		.failureHandler(new SimpleUrlAuthenticationFailureHandler())
-		.and()
-		.logout()
-		.logoutUrl("/logout")
-		.logoutSuccessHandler(new AuthenticationSuccessLogoutHandler())
-		.invalidateHttpSession(true)
-		.and()
-		.authorizeRequests()
-		.antMatchers("/login").permitAll()
-		.antMatchers("/logout").permitAll()
-		// Liste des urls avec connexion
-		.antMatchers("/employes").authenticated()
-		.anyRequest().permitAll();
+//		.formLogin()
+//		.loginProcessingUrl("/signin")
+//		.successHandler(new AuthenticationSuccessLoginHandler())
+//		.failureHandler(new SimpleUrlAuthenticationFailureHandler())
+//		.and()
+//		.logout()
+//		.logoutUrl("/signout")
+//		.logoutSuccessHandler(new AuthenticationSuccessLogoutHandler())
+//		.invalidateHttpSession(true)
+//		.and()
+//		.authorizeRequests()
+//		.antMatchers("/signout").permitAll()
+//		// Liste des urls avec connexion
+//		.antMatchers("/employes").authenticated()
+//		.anyRequest().permitAll()
+//		.and()
+		.httpBasic();
 		
 	}
 
@@ -87,6 +92,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		AppAuthProvider provider = new AppAuthProvider();
 		provider.setUserDetailsService(userDetailsService);
 		return provider;
+	}
+	
+	@Bean
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
 	}
 
 }
