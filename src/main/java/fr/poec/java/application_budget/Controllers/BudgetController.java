@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.poec.java.application_budget.Dto.BudgetDto;
+import fr.poec.java.application_budget.Dto.BudgetDtoAll;
 import fr.poec.java.application_budget.Entities.Budget;
 import fr.poec.java.application_budget.Entities.Expense;
 import fr.poec.java.application_budget.Entities.Participant;
@@ -75,10 +75,10 @@ public class BudgetController {
 	}
 	
 	@PutMapping(value="updatebudget", consumes="application/json", produces = "application/json")
-	public Budget updateBudget(@RequestBody BudgetDto budgetDto){
-		Budget budget = mapper.map(budgetDto, Budget.class);
+	public BudgetDtoAll updateBudget(@RequestBody BudgetDtoAll budgetDtoAll){
+		Budget budget = mapper.map(budgetDtoAll, Budget.class);
 		budgetService.updateBudget(budget);
-		return budget;
+		return budgetDtoAll;
 	}
 
 	@PostMapping(value="savebudget", consumes="application/json", produces = "application/json")

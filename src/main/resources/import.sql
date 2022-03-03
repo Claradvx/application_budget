@@ -46,7 +46,6 @@ insert into expense(id, name, description, montant, budget_id, payeur_id) values
 insert into participant_expense(participant_id, expense_id) values(1, 1)
 insert into participant_expense(participant_id, expense_id) values(4, 1)
 insert into participant_expense(participant_id, expense_id) values(5, 1)
-insert into participant_expense(participant_id, expense_id) values(7, 1)
 insert into participant_expense(participant_id, expense_id) values(10, 1)
 
 insert into participant_expense(participant_id, expense_id) values(1, 2)
