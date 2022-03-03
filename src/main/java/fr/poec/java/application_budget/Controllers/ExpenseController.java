@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.poec.java.application_budget.Dto.ExpenseDto;
+import fr.poec.java.application_budget.Dto.ExpenseDtoAll;
 import fr.poec.java.application_budget.Entities.Expense;
 import fr.poec.java.application_budget.Services.Interfaces.ExpenseService;
 
@@ -52,8 +53,8 @@ public class ExpenseController {
 	}
 
 	@PostMapping(value="saveexpense", consumes="application/json", produces = "text/plain")
-	public String saveExpense(@RequestBody Expense expense){
-		expenseService.saveOrUpdateExpense(expense);
+	public String saveExpense(@RequestBody ExpenseDtoAll expenseDto){
+		expenseService.saveExpense(expenseDto);
 		return "Dépense sauvegardée avec succès";
 	}
 

@@ -26,22 +26,11 @@ public class ParticipantController {
 	
     @Autowired
     private ModelMapper mapper;
-
-	
-//	@GetMapping(value="budget{id}/participants", produces = "application/json")
-//	public List<Participant> getParticipantsByIdBudget(@PathVariable int id){
-//		return budgetService.getParticipantsByIdBudget(id);
-//	}
 	
 	@GetMapping(value="budget{id}/participants", produces = "application/json")
 	public List<ParticipantDto> getParticipantsDtoByIdBudget(@PathVariable int id){
 		return participantService.getParticipantsDtoByIdBudget(id);
 	}
-	
-//	@GetMapping(value="participant{id}", produces = "application/json")
-//	public Participant getParticipantById(@PathVariable int id){
-//		return participantService.getParticipantById(id);
-//	}
 	
 	@GetMapping(value="participant{id}", produces = "application/json")
 	public ParticipantDto getParticipantDtoById(@PathVariable int id){
@@ -71,7 +60,7 @@ public class ParticipantController {
 	@PostMapping(value="saveparticipant", consumes="application/json", produces = "application/json")
 	public Participant saveParticipant(@RequestBody ParticipantDto participantDto){
 		Participant participant = mapper.map(participantDto, Participant.class);
-		participantService.saveParticipant(participant);
-		return participant;
+		Participant newParticipant = participantService.saveParticipant(participant);
+		return newParticipant;
 	}
 }

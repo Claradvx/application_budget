@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.poec.java.application_budget.Dto.ExpenseDto;
+import fr.poec.java.application_budget.Dto.ExpenseDtoAll;
 import fr.poec.java.application_budget.Entities.Expense;
 import fr.poec.java.application_budget.Repositories.ExpenseRepository;
 import fr.poec.java.application_budget.Services.Interfaces.ExpenseService;
@@ -42,9 +43,9 @@ public class ExpenseServiceImpl implements ExpenseService {
 		expenseRepo.deleteById(id);
 	}
 	
-	@Override
-	public Expense saveOrUpdateExpense(Expense expense) {
-		Expense newExpense = expenseRepo.save(expense);
+	
+	public Expense saveExpense(ExpenseDtoAll expenseDto) {
+		Expense newExpense = expenseRepo.save(mapper.map(expenseDto, Expense.class));
 		return newExpense;
 	}
 	

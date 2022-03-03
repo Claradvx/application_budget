@@ -3,6 +3,7 @@ package fr.poec.java.application_budget.Services.Interfaces;
 import java.util.List;
 
 import fr.poec.java.application_budget.Dto.ExpenseDto;
+import fr.poec.java.application_budget.Dto.ExpenseDtoAll;
 import fr.poec.java.application_budget.Entities.Expense;
 
 public interface ExpenseService {
@@ -15,7 +16,7 @@ public interface ExpenseService {
 	
 	public void deleteExpenseById(int id);
 	
-	public Expense saveOrUpdateExpense(Expense expense);
+	public Expense saveExpense(ExpenseDtoAll expense);
 	
 	public Expense updateExpense(Expense expense);
 	
