@@ -27,24 +27,24 @@ public class ParticipantController {
     @Autowired
     private ModelMapper mapper;
 	
-	@GetMapping(value="budget{id}/participants", produces = "application/json")
+	@GetMapping(value="budget/{id}/participants", produces = "application/json")
 	public List<ParticipantDto> getParticipantsDtoByIdBudget(@PathVariable int id){
 		return participantService.getParticipantsDtoByIdBudget(id);
 	}
 	
-	@GetMapping(value="participant{id}", produces = "application/json")
+	@GetMapping(value="participant/{id}", produces = "application/json")
 	public ParticipantDto getParticipantDtoById(@PathVariable int id){
 		return participantService.getParticipantDtoById(id);
 	}
 	
 	
-	@GetMapping(value="user{id}/participants", produces = "application/json")
+	@GetMapping(value="user/{id}/participants", produces = "application/json")
 	public List<Participant> getParticipantsByIdUser(@PathVariable int id){
 		return participantService.getParticipantsByIdUser(id);
 	}
 	
 	
-	@DeleteMapping(value="deleteparticipant{id}", produces = "text/plain")
+	@DeleteMapping(value="deleteparticipant/{id}", produces = "text/plain")
 	public String deleteParticipantById(@PathVariable int id) {
 		participantService.deleteParticipantById(id);
 		return "Participant supprimé";

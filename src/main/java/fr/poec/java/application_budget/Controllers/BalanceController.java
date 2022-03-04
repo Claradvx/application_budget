@@ -83,7 +83,7 @@ public class BalanceController {
 	}
 
 	//Resultat
-	@GetMapping(value="budget{id}/scale", produces = "application/json")
+	@GetMapping(value="budget/{id}/scale", produces = "application/json")
 	public List<Balance> getBalanceByBudgetId(@PathVariable int id){
 		Map<Integer, Double> scaleMap = getScaleByParticipant(id);
 		List<Balance> balance = new ArrayList<Balance>();

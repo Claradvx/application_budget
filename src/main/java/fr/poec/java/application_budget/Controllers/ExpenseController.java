@@ -29,17 +29,17 @@ public class ExpenseController {
     private ModelMapper mapper;
 	
 
-	@GetMapping(value="budget{id}/expenses", produces = "application/json")
+	@GetMapping(value="budget/{id}/expenses", produces = "application/json")
 	public List<ExpenseDto> getExpensesDtoByIdBudget(@PathVariable int id){
 		return expenseService.getExpensesDtoByIdBudget(id);
 	}
 	
-	@GetMapping(value="expense{id}", produces = "application/json")
+	@GetMapping(value="expense/{id}", produces = "application/json")
 	public ExpenseDto getExpenseDtoById(@PathVariable int id) {
 		return expenseService.getExpenseDtoById(id);
 	}
 	
-	@DeleteMapping(value="deleteexpense{id}", produces = "text/plain")
+	@DeleteMapping(value="deleteexpense/{id}", produces = "text/plain")
 	public String deleteExpenseById(@PathVariable int id) {
 		expenseService.deleteExpenseById(id);
 		return "Dépense supprimée";

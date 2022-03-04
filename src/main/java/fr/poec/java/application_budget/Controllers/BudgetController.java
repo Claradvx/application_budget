@@ -43,12 +43,12 @@ public class BudgetController {
 		return budgetService.getAllBudget();
 	}
 	
-	@GetMapping(value="user{id}/budgets", produces = "application/json")
+	@GetMapping(value="user/{id}/budgets", produces = "application/json")
 	public List<Budget> getBudgetsByIdUser(@PathVariable int id){
 		return budgetService.getBudgetsByIdUser(id);
 	}
 
-	@GetMapping(value="budget{id}", produces = "application/json")
+	@GetMapping(value="budget/{id}", produces = "application/json")
 	public Budget getBudgetById(@PathVariable int id) {
 		return budgetService.getBudgetById(id);
 	}
@@ -59,7 +59,7 @@ public class BudgetController {
 		return budgetService.getBudgetById(id);
 	}
 	
-	@DeleteMapping(value="deletebudget{id}", produces = "text/plain")
+	@DeleteMapping(value="deletebudget/{id}", produces = "text/plain")
 	public String deleteBudgetById(@PathVariable int id) {
 		List<Participant> lstParticipants = participantService.getParticipantsByIdBudget(id);
 		List<Expense> lstExpenses = expenseService.getExpensesByIdBudget(id);

@@ -26,7 +26,7 @@ public class UserController {
 	private AuthenticationManager authManager;
 	
 	
-	@GetMapping (value="user{id}", produces="application/json")
+	@GetMapping (value="user/{id}", produces="application/json")
 	public User getUserById (@PathVariable int id) {
 		return (User) userService.findById(id);
 	}
