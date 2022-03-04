@@ -27,6 +27,14 @@ public class UserServiceImpl implements UserDetailsService{
 		User user = userRepo.findById(id);
 		return user;
 	}
+	
+	public UserDetails getUserByUsername(String username) {
+		System.out.println("username find by username" + username);
+		UserDetails user = userRepo.findByUsername(username);
+		System.out.println("user find by username" + user);
+		return (User) user;
+	}
+
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -38,6 +46,30 @@ public class UserServiceImpl implements UserDetailsService{
 		}
 		return user;
 	}
-
+	
+	public User saveUser(User userUpdated) {
+		userRepo.save(userUpdated);
+		return userUpdated;
+	}
+	
+	public User updateUser(User userUpdated) {
+		User existingUser = userRepo.getUserById(userUpdated.getId());
+		if (userUpdated.getName() != null) {
+			existingUser.setName(userUpdated.getName());
+		}
+		if (userUpdated.getFirstname() != null) {
+			existingUser.setFirstname(userUpdated.getFirstname());
+		}
+		if (userUpdated.getUsername() != null) {
+			existingUser.setUsername(userUpdated.getUsername());
+		}
+		if (userUpdated.getPassword() != null) {
+			existingUser.setPassword(userUpdated.getPassword());
+		}
+		if (userUpdated.getAge() != 0) {
+			existingUser.setAge(userUpdated.getAge());
+		}
+		return userRepo.save(existingUser);
+	}
 
 }
