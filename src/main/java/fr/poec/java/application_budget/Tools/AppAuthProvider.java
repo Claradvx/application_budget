@@ -25,8 +25,8 @@ public class AppAuthProvider extends DaoAuthenticationProvider{
 	
 		//user contient un password cryptÃ© - on doit crypter le password saisi par l'utilisateur cÃ´tÃ© front
 		//pour pouvoir comparer les 2 passwords
-		
-		if(user == null || !user.getPassword().equals(PasswordTool.CryptPassword(password))) {
+		//FIXME: password en clair, ajouter l'encodage de password
+		if(user == null || !user.getPassword().equals(password)) {
 			throw new BadCredentialsException("Username/Password does not match");
 		}
 		

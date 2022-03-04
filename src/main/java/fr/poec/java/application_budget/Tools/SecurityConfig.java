@@ -41,31 +41,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		http.csrf()
 		.disable() //blocage des requÃªtes qui proviennent d'un poste non authentifiÃ©
-		.authorizeRequests()
-		.antMatchers("/signin").permitAll()
-	//	.and()
-	//	.exceptionHandling() //dÃ©clencher une exception
-	//	.authenticationEntryPoint(new Http403ForbiddenEntryPoint()) //ressource inexistante
-		.and()
 		.authenticationProvider(getProvider())
-//		.formLogin()
-//		.loginProcessingUrl("/signin")
-//		.successHandler(new AuthenticationSuccessLoginHandler())
-//		.failureHandler(new SimpleUrlAuthenticationFailureHandler())
-//		.and()
-//		.logout()
-//		.logoutUrl("/signout")
-//		.logoutSuccessHandler(new AuthenticationSuccessLogoutHandler())
-//		.invalidateHttpSession(true)
-//		.and()
-//		.authorizeRequests()
-//		.antMatchers("/signout").permitAll()
-//		// Liste des urls avec connexion
-//		.antMatchers("/employes").authenticated()
-//		.anyRequest().permitAll()
-//		.and()
-		.httpBasic();
-		
+		.authorizeRequests()
+		.antMatchers("/signin","/signout").permitAll()
+		.anyRequest().authenticated()
+	    .and()
+	    .exceptionHandling() //dÃ©clencher une exception
+	    .authenticationEntryPoint(new Http403ForbiddenEntryPoint()) //ressource inexistante
+		.and()
+	    .httpBasic();
 	}
 
 	private class AuthenticationSuccessLoginHandler extends SimpleUrlAuthenticationSuccessHandler{
