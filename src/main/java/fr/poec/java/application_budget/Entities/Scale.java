@@ -1,6 +1,6 @@
 package fr.poec.java.application_budget.Entities;
 
-public class Balance {
+public class Scale {
 	
 	private int id;
 	
@@ -42,7 +42,7 @@ public class Balance {
 		this.beneficiaire = beneficiaire;
 	}
 
-	public Balance(int id, String payeur, double montant, String beneficiaire) {
+	public Scale(int id, String payeur, double montant, String beneficiaire) {
 		super();
 		this.id = id;
 		this.payeur = payeur;

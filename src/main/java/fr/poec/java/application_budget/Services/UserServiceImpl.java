@@ -23,21 +23,17 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	public User getUserByUsername(String username) {
-		System.out.println("username find by username" + username);
 		User user = userRepo.findByUsername(username);
-		System.out.println("user find by username" + user);
 		return user;
 	}
 	
 	public User validateUser (User user, String password) {
-		System.out.println("user password" + user.getPassword());
-		System.out.println("input password" + password);
-		System.out.println(user.getPassword() == password);
-		if (user.getPassword() == password) {
-			System.out.println("if coucouuuuuuuuuuuuuuuuuuuuuuuu");
+
+		if (user.getPassword().equals(password)) {
+			System.out.println("Connexion");
 			return user;
 		}
-		return user;
+		return null;
 	}
 	
 	public User saveUser(User userUpdated) {

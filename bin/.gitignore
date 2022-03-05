@@ -1,9 +1,27 @@
 HELP.md
+
+##############################
+## Maven
+##############################
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+##############################
+## Eclipse
+##############################
+.settings/
+bin/
+tmp/
+.metadata
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+.factorypath
 ### STS ###
 .apt_generated
 .classpath
@@ -31,3 +49,15 @@ build/
 
 ### VS Code ###
 .vscode/
+/.metadata/
+
+##############################
+## Java
+##############################
+.mtj.tmp/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*

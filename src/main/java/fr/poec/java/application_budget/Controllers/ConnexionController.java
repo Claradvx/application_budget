@@ -20,18 +20,7 @@ public class ConnexionController {
 	
 	@Autowired
 	UserServiceImpl userService;
-	
-//	@Autowired
-//	private AuthenticationManager authManager;
-	
-//	@PostMapping (value="signin", produces="application/json", consumes="application/json")
-//	public User signIn(@RequestBody User user) {
-//		Authentication auth = authManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
-//		SecurityContextHolder.getContext().setAuthentication(auth);
-//		User userLogged = (User) userService.loadUserByUsername(user.getUsername());
-//	    return userLogged;
-//	}
-	
+
 	@PostMapping (value="signin", produces="application/json", consumes="application/json")
 	public User signIn(@RequestBody User user) {
 		System.out.println("user: " + user);
@@ -41,7 +30,6 @@ public class ConnexionController {
 	
     @GetMapping(value = "signout", produces="application/text")
     public String signOut() {
-//        SecurityContextHolder.getContext().setAuthentication(null);
         return "logout";
     }
     

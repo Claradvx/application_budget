@@ -43,10 +43,7 @@ public class ParticipantServiceImpl implements ParticipantService {
 
 	@Override
 	public void deleteParticipantById(int id) {
-//		Participant participant = participantRepo.getParticipantById(id);
-//		if (participant.getBudget() == null && expenseService.getExpensesByPayeur(participant.getId()) == null && participant.getExpenses() == null) {
-			participantRepo.deleteById(id);	
-//		}
+		participantRepo.deleteById(id);	
 	}
 
 	@Override
@@ -66,8 +63,6 @@ public class ParticipantServiceImpl implements ParticipantService {
 		return participantRepo.save(existingParticipant);
 	}
 
-	
-	//Ajout test Dto
 	@Override
 	public ParticipantDto getParticipantDtoById(int id) {
 		ParticipantDto participantDto = mapper.map(participantRepo.getParticipantById(id), ParticipantDto.class);

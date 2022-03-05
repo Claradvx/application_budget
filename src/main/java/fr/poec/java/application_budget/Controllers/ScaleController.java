@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.poec.java.application_budget.Entities.Balance;
+import fr.poec.java.application_budget.Entities.Scale;
 import fr.poec.java.application_budget.Entities.Expense;
 import fr.poec.java.application_budget.Entities.Participant;
 import fr.poec.java.application_budget.Services.Interfaces.ExpenseService;
@@ -19,7 +19,7 @@ import fr.poec.java.application_budget.Services.Interfaces.ParticipantService;
 
 @RestController
 @RequestMapping("/")
-public class BalanceController {
+public class ScaleController {
 
 	@Autowired
 	ParticipantService participantService;
@@ -84,9 +84,9 @@ public class BalanceController {
 
 	//Resultat
 	@GetMapping(value="budget/{id}/scale", produces = "application/json")
-	public List<Balance> getBalanceByBudgetId(@PathVariable int id){
+	public List<Scale> getBalanceByBudgetId(@PathVariable int id){
 		Map<Integer, Double> scaleMap = getScaleByParticipant(id);
-		List<Balance> balance = new ArrayList<Balance>();
+		List<Scale> balance = new ArrayList<Scale>();
 		int i = 0;
 		while (scaleMap.size() > 0) {
 			double maxVal = 0;
@@ -149,7 +149,7 @@ public class BalanceController {
 					idreceveur = maxId;
 				}
 			}
-			Balance tour = new Balance(i, participantService.getParticipantById(idpayeur).getUsername(), mt, participantService.getParticipantById(idreceveur).getUsername());
+			Scale tour = new Scale(i, participantService.getParticipantById(idpayeur).getUsername(), mt, participantService.getParticipantById(idreceveur).getUsername());
 			balance.add(tour);
 			i++;
 		}

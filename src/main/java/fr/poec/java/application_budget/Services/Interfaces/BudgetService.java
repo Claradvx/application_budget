@@ -11,8 +11,6 @@ public interface BudgetService {
 	public Budget getBudgetById(int id);
 	
 	public List<Budget> getBudgetsByIdUser(int userId);
-
-//	public List <Participant> getParticipantsByIdBudget(int budgetId);
 	
 	public Budget updateBudget(Budget budget);
 	
