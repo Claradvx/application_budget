@@ -10,6 +10,8 @@ public interface ParticipantService {
 	public List<Participant> getParticipantsByIdUser(int userId);
 	
     public List <Participant> getParticipantsByIdBudget (int budgetId);
+    
+    public ParticipantDto getParticipantByIdBudgetAndIdUser(int budgetId, int userId);
 
     public Participant getParticipantById(int id);
     

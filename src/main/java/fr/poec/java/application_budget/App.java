@@ -1,23 +1,12 @@
 package fr.poec.java.application_budget;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import fr.poec.java.application_budget.Entities.Budget;
-import fr.poec.java.application_budget.Entities.Expense;
-import fr.poec.java.application_budget.Entities.Participant;
-import fr.poec.java.application_budget.Entities.User;
 import fr.poec.java.application_budget.Repositories.BudgetRepository;
 import fr.poec.java.application_budget.Repositories.ExpenseRepository;
 import fr.poec.java.application_budget.Repositories.ParticipantRepository;
@@ -44,22 +33,10 @@ public class App implements CommandLineRunner{
 		return new ModelMapper();
 	}
 	
-//	@Bean
-//	public WebMvcConfigurer corsConfigurer() {
-//		return new WebMvcConfigurer() {
-//		@Override
-//		public void addCorsMappings (CorsRegistry registry) {
-//			registry.addMapping("/home/budgets")
-//				.allowedOrigins("http://localhost:3000");
-//		}
-//	};
-//	}
 	
 	public static void main(String[] args) {
 		SpringApplication.run(App.class, args);
 	}
-	
-
 	
 
 	@Override
