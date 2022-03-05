@@ -1,48 +1,41 @@
 package fr.poec.java.application_budget.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+//import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.userdetails.UserDetailsService;
+//import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import fr.poec.java.application_budget.Entities.User;
 import fr.poec.java.application_budget.Repositories.UserRepository;
+import fr.poec.java.application_budget.Services.Interfaces.UserService;
 
-import fr.poec.java.application_budget.Tools.PasswordTool;
 
 @Service
-public class UserServiceImpl implements UserDetailsService{
+public class UserServiceImpl implements UserService{
 
 	@Autowired
 	private UserRepository userRepo;
 	
-	
-	public void InsertUser(User user) {
-		user.setPassword(PasswordTool.CryptPassword(user.getPassword()));
-		userRepo.save(user);
-	}
-	
-	public UserDetails findById(int id) {
+	public User findById(int id) {
 		User user = userRepo.findById(id);
 		return user;
 	}
 	
-	public UserDetails getUserByUsername(String username) {
+	public User getUserByUsername(String username) {
 		System.out.println("username find by username" + username);
-		UserDetails user = userRepo.findByUsername(username);
-		System.out.println("user find by username" + user);
-		return (User) user;
-	}
-
-
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepo.findByUsername(username);
-		System.out.println("username service : " + username);
-		System.out.println("user service : " + user);
-		if (user == null) {
-			throw new UsernameNotFoundException("erreur pas de user");
+		System.out.println("user find by username" + user);
+		return user;
+	}
+	
+	public User validateUser (User user, String password) {
+		System.out.println("user password" + user.getPassword());
+		System.out.println("input password" + password);
+		System.out.println(user.getPassword() == password);
+		if (user.getPassword() == password) {
+			System.out.println("if coucouuuuuuuuuuuuuuuuuuuuuuuu");
+			return user;
 		}
 		return user;
 	}
