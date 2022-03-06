@@ -82,9 +82,9 @@ public class BudgetController {
 	}
 
 	@PostMapping(value="savebudget", consumes="application/json", produces = "application/json")
-	public int saveBudget(@RequestBody Budget budget){
+	public Budget saveBudget(@RequestBody Budget budget){
 		budgetService.saveBudget(budget);
-		return budget.getId();
+		return budget;
 	}
 
 }
