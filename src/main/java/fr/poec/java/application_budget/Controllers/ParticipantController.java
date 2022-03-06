@@ -39,7 +39,7 @@ public class ParticipantController {
 	
 	@GetMapping(value="user/{id_user}/budget/{id_budget}/participant", produces = "application/json")
 	public ParticipantDto getParticipantByIdBudgetAndIdUser(@PathVariable int id_user, @PathVariable int id_budget){
-		return participantService.getParticipantByIdBudgetAndIdUser(id_user, id_budget);
+		return participantService.getParticipantByIdBudgetAndIdUser(id_budget, id_user);
 	}
 	
 	

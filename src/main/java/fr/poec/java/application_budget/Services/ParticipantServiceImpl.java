@@ -41,6 +41,7 @@ public class ParticipantServiceImpl implements ParticipantService {
 		ParticipantDto participantDto = mapper.map(participantRepo.getParticipantByIdBudgetAndIdUser(budgetId, userId), ParticipantDto.class);
 		return participantDto;
 	}
+	
 
 	@Override
 	public Participant getParticipantById(int id) {

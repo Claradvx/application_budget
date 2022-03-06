@@ -57,9 +57,13 @@ public class BudgetServiceImpl implements BudgetService {
 
 		budgetRepo.save(existingBudget);
 
-
 		for (Participant p : budgetUpdated.getMembersBudget()) {
-			Participant participant = participantService.getParticipantById(p.getId());
+			Participant participant = new Participant();
+			if (participantService.getParticipantById(p.getId()) == null) {
+				participant = new Participant(p.getUsername());
+			}else {
+				participant = participantService.getParticipantById(p.getId());
+			}
 			participant.setBudget(existingBudget);
 			participantService.saveParticipant(participant);
 		}
